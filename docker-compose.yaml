@@ -1,0 +1,20 @@
+version: "3"
+services:
+  consumer:
+    image: assignment/medicines-docker
+    ports:
+      - "8200:8200"
+    networks:
+      - consumer-producer
+    depends_on:
+      - producer
+
+  producer:
+    image: assignment/eureka-server
+    ports:
+      - "8761:8761"
+    networks:
+      - consumer-producer
+
+networks:
+  consumer-producer:
